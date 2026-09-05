@@ -1,5 +1,5 @@
-import { ReferralWorkbench } from "@/components/referral-workbench";
+import { OverviewScreen } from "@/components/overview-screen";
 
 export default function Home() {
-  return <ReferralWorkbench />;
+  return <OverviewScreen />;
 }

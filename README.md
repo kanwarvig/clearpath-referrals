@@ -15,6 +15,15 @@ npm run dev
 
 Open `http://localhost:3000`, choose `REF-1042`, and follow the single next-safe-action panel. Reset returns the browser to reproducible seed inputs.
 
+The interface uses route-level information architecture so direct links, refresh, and browser navigation work as expected:
+
+- `/` — guided product overview and one clear starting action
+- `/intake` — searchable referral queue
+- `/referrals/[id]` — focused, progressively disclosed review workspace
+- `/handoffs` — receiver ledger and recovery pattern
+- `/evidence` — computed benchmark evidence and claim boundaries
+- `/system` — architecture and explicit scope boundaries
+
 Quality commands:
 
 ```bash

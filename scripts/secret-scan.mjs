@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const tracked = execFileSync("git", ["ls-files"], { encoding: "utf8" }).trim().split(/\r?\n/).filter(Boolean);
 const textExtensions = new Set([".ts", ".tsx", ".js", ".mjs", ".json", ".md", ".yml", ".yaml", ".css", ".toml"]);
@@ -12,7 +12,7 @@ const patterns = [
 const findings = [];
 for (const file of tracked) {
   const extension = file.slice(file.lastIndexOf("."));
-  if (!textExtensions.has(extension) || file === "package-lock.json") continue;
+  if (!existsSync(file) || !textExtensions.has(extension) || file === "package-lock.json") continue;
   const value = readFileSync(file, "utf8");
   for (const pattern of patterns) if (pattern.regex.test(value)) findings.push(`${file}: ${pattern.name}`);
 }

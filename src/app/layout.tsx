@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { AppShell } from "@/components/app-shell";
+import { WorkspaceProvider } from "@/components/workspace-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,14 +16,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Clearpath Referrals · Synthetic intake workbench",
-  description: "A deterministic, synthetic healthcare referral workflow demonstrating provenance, FHIR R4 validation, and reliable handoffs.",
+  title: { default: "Clearpath Referrals", template: "%s · Clearpath" },
+  description: "A deterministic synthetic referral workflow demonstrating provenance, FHIR R4 validation, and reliable handoffs.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body><WorkspaceProvider><AppShell>{children}</AppShell></WorkspaceProvider></body>
     </html>
   );
 }
